@@ -1,0 +1,18 @@
+version: '3'
+services:
+  nest:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=mongodb://mongodb/nestjs
+    depends_on:
+      - mongodb
+  mongodb:
+    image: bitnami/mongodb:5.0.17
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/bitnami/mongodb/data
